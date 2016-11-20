@@ -1,5 +1,5 @@
 install: pip install -r req.txt
 
-test: python -m unittest test
+test: cd botDietas python -m unittest test
 
-ejecutar: python bot_dietas.py
+ejecutar: cd botDietas && python bot_dietas.py
