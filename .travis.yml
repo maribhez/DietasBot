@@ -6,6 +6,11 @@ services:
   - postgresql
 
 sudo: required
-install: make install
+install:
+  make install-requirements 
+  # - pip install pyTelegramBotAPI
+  # - pip install -U pytest
+  # -
+
 
 script: make test

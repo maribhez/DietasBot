@@ -7,6 +7,7 @@
 *.pid
 *.gz
 *.[oa]
+*.pyc
 *~
 *.#
 **/.DS_Store
