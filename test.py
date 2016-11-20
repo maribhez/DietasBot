@@ -3,7 +3,7 @@
 
 import unittest
 import bot_dietas
-
+import pytest
 
 class TestMetodosBot(unittest.TestCase):
 
@@ -11,6 +11,10 @@ class TestMetodosBot(unittest.TestCase):
     def test_menu(self):
         valor = bot_dietas.conecta_bd()
         self.assertTrue(valor)
+
+
+def main():
+        unittest.main()
 
 
 if __name__ == '__main__':

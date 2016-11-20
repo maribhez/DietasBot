@@ -2,7 +2,7 @@ install:
 	pip install -r req.txt
 
 test:
-	python test.py
+	python -m pytest
 
 ejecutar:
 
