@@ -1,9 +1,5 @@
-psycopg2==2.6.2
 pyTelegramBotAPI==2.2.3
 pytest==3.0.4
-python-apt==1.1.0b1
-python-debian==0.1.27
-python-systemd==231
 python-telegram-bot==5.2.0
 requests==2.9.1
 six==1.10.0
