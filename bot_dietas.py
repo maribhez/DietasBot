@@ -6,9 +6,6 @@ import os
 TOKEN = '280531529:AAHnCDXdiA5yUFQtH6ChpLbvpuUDQi1S4tY'
 
 tb = telebot.TeleBot(TOKEN) # Combinamos la declaración del Token con la función de la API.
-# usuario = 'postgres'
-# base_datos = 'bd_dietas'
-# passw = 'postgres'
 
 
 def listener(messages):
