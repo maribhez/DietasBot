@@ -1,8 +1,9 @@
 #!/bin/usr/python
 # -*- coding: utf-8 -*-
 
-import unittest
+
 import bot_dietas
+import psycopg2
 import pytest
 
 class TestMetodosBot(unittest.TestCase):
@@ -21,5 +22,5 @@ class TestMetodosBot(unittest.TestCase):
 
 
 
-if __name__ == '__main__':
-    unittest.main()
+    if __name__ == '__main__':
+        unittest.main()
