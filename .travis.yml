@@ -9,7 +9,6 @@ sudo: required
 install:
 
   make install
-  make install-requirements
   # - pip install pyTelegramBotAPI
   # - pip install -U pytest
   # -
