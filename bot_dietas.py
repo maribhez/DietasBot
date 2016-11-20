@@ -46,6 +46,7 @@ def informacion(m):
 @tb.message_handler(commands=['dietas_hoy'])
 def dietas_hoy(m):
     cid = m.chat.id
+    respuesta = "Las dietas son:" + "\n"
     try:
         conecta = psycopg2.connect(database="bd_dietas", user="mmar_bd", password="mmar_bd", host="localhost")
         cursor = conecta.cursor()
@@ -54,16 +55,17 @@ def dietas_hoy(m):
     except:
         tb.send_message(cid, "No conecta -2 ")
     try:
-        #sql = "insert into comida values ('Pollo', '1', 'Alta')"
-        #cursor.execute(sql)
+        sql = "insert into comida values ('Pollo', '100', 'Alta')"
+        cursor.execute(sql)
         sql = "select * from public.comida"
         cursor.execute(sql)
         #respuesta = "Correcto."
-        r = cursor.fetchall()
+        r = cursor.fetchone()
         # respuesta = ""
         # for i in r:
-        #     respuesta += str(i[0]) + " " + str(i[1]) + " " + str(i[2]) + "\n"
-        respuesta = "Conectado a la BD"
+        #   respuesta += str(i[0]) + "\n"
+        #respuesta = "Conectado a la BD"
+        respuesta = "Menú: " + str(r[0]) + "" + " Cantidad (gramos): " + str(r[1]) + "Importancia" + str(r[2])
         cursor.close()
         conecta.close()
     except:
