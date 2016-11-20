@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.5.2"
+
+services:
+  - postgresql
+
+install: make install
+
+script: make test
