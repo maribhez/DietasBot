@@ -8,10 +8,8 @@ services:
 sudo: required
 install:
 
-  - python setup.py install
-  - sudo pip install --upgrade pip
-  - pip install -r requirements.txt
-
+  make install
+  make install-requirements
   # - pip install pyTelegramBotAPI
   # - pip install -U pytest
   # -
