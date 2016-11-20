@@ -1,8 +1,5 @@
-install:
-	pip install -r req.txt
+install: pip install -r req.txt
 
-test:
-  python -m unittest test
-ejecutar:
+test: python -m unittest test
 
-	python bot_dietas.py
+ejecutar: python bot_dietas.py
