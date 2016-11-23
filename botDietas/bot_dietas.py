@@ -74,10 +74,9 @@ def dietas_hoy(m):
 
     tb.send_message(cid, respuesta)
 
-tb.set_update_listener(listener)
+#tb.set_update_listener(listener)
 
-tb.polling(none_stop=True) #Así no para nunca el bot.
-
+tb.polling(none_stop=True)
 
 if __name__ == "__main__":
-    dietas_hoy();
+    dietas_hoy()
