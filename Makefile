@@ -3,7 +3,7 @@ install:
 
 
 test:
-		cd botDietas && python test_bot.py
+		cd botDietas && py.test
 
 ejecutar:
 	cd botDietas && python bot_dietas.py
