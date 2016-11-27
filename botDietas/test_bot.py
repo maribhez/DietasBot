@@ -3,7 +3,7 @@
 import sqlite3
 # class TestMetodosBot(unittest.TestCase):
 
-def extraer_nombre():
+def nombre():
     con = sqlite3.connect('bd_dietas.db')
     cursor = con.cursor()
     cursor.execute("SELECT NOMBRE, CANTIDAD, IMPORTANCIA from COMIDA")
@@ -20,13 +20,18 @@ def extraer_cantidad():
         cantidad+=1
     return cantidad
 
-def test_basededatos():
+def test_nombre():
     """ Test que comprueba si pueden recogerse los datos de la BD. """
-    respuesta = extraer_nombre()
+    respuesta = nombre()
     assert (respuesta =="Risotto")
 
 
 def test_cantidad():
-    """ Test que comprueba que la base de datos no está vacía."""
+    """ Test que comprueba la cantidad de datos en la BD. """
     ndatos = extraer_cantidad()
     assert (ndatos != 0)
+
+
+#
+# if __name__ == '__main__':
+#     unittest.main()
