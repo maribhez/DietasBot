@@ -2,12 +2,12 @@ import telebot # Importamos las librería
 #import pg
 import psycopg2
 import os
-
+import sys
 import sqlite3
 
-TOKEN = '280531529:AAHnCDXdiA5yUFQtH6ChpLbvpuUDQi1S4tY'
 
-tb = telebot.TeleBot(TOKEN) # Combinamos la declaración del Token con la función de la API.
+
+tb = telebot.TeleBot(sys.argv[1]) # Combinamos la declaración del Token con la función de la API.
 
 
 def listener(messages):
