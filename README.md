@@ -1,6 +1,9 @@
 # BOT DE TELEGRAM PARA EL APOYO DE DIETAS ALIMENTICIAS.
 
-![Sin titulo](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017.svg?branch=master)
+<!-- ![Sin titulo](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017.svg?branch=master) -->
+
+[![Build Status](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017.svg?branch=master)](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017)
+
 *****
 
 ## Descripción  y justificación.
