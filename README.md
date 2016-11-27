@@ -32,16 +32,6 @@ Dicha configuración se encuentra enlazada a la cuenta de GitHub, además de cre
 
 Para que Travis configure nuestro proyecto para poder realizar las pruebas se ha creado un *makefile*. Dicho archivo contiene la siguiente información:
 
-> install:
->	pip install -r requirements.txt
->
->
->test:
->		cd botDietas && pytest
->
->ejecutar:
->	cd botDietas && python bot_dietas.py
->
 >  install:
 >  	pip install -r requirements.txt
 >
