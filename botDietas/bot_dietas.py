@@ -42,12 +42,12 @@ def informacion(m):
     cadena = "Este bot tiene como función ayudarte a recordar cuál es la comida a preparar para el día de hoy y/o la semana actual"
     tb.send_message(cid, cadena)
 
-
-@tb.message_handler(commands=['incluye_tu_dieta'])
-def informacion(m):
-    cid = m.chat.id
-    cadena = "Incluye tu dieta"
-    tb.send_message(cid, cadena)
+#
+# @tb.message_handler(commands=['incluye_tu_dieta'])
+# def informacion(m):
+#     cid = m.chat.id
+#     cadena = "Incluye tu dieta"
+#     tb.send_message(cid, cadena)
 
 
 
@@ -69,7 +69,6 @@ def dietas_hoy(m):
         # con.commit() #Para guardar los datos.
 
         cursor.execute("SELECT NOMBRE, CANTIDAD, IMPORTANCIA from COMIDA")
-        print ("Todo ok.")
         for i in cursor:
             respuesta = i
 
