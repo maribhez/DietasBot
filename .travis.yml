@@ -3,12 +3,13 @@ python:
   - "3.5.2"
 
 services:
-  - postgresql
+  - sqlite3
 
 sudo: required
 install:
 
   make install
+  sudo apt-get install python3
   # - pip install pyTelegramBotAPI
   # - pip install -U pytest
   # -
