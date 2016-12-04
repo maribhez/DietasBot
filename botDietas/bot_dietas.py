@@ -1,10 +1,9 @@
 import telebot # Importamos las librería
 #import pg
 import psycopg2
-import os
-import sys
 import sqlite3
-
+import based_dietas
+import sys
 
 
 tb = telebot.TeleBot(sys.argv[1]) # Combinamos la declaración del Token con la función de la API.
@@ -15,26 +14,19 @@ def listener(messages):
         if m.content_type == 'text':
             print (m.text)
 
-
-    def conecta():
-        try:
-            con = sqlite3.connect('bd_dietas.db')
-            cursor = con.cursor()
-            cursor.execute("SELECT NOMBRE, CANTIDAD, IMPORTANCIA from COMIDA")
-            print ("Todo ok.")
-            for i in cursor:
-                respuesta = i
-        except:
-            respuesta = 0
-        return respuesta
+#Prueba de BD.
+@tb.message_handler(commands=['bd'])
+def bd(m):
+    try:
+        based_dietas.conecta()
+    except:
+        return "Fallo"
 
 @tb.message_handler(commands=['start'])
 def command_start(m):
     cid = m.chat.id # Guardamos el ID de la conversación para poder responder.
     cadena = "Bienvenido al bot. Los comandos a usar son los siguientes:" + "\n" + "/dietas_hoy Devuelve el menú del día de hoy. " + "\n" + "/dietas_general  Muestra el menú de toda la semana." + "\n" + "/informacion ¿Qué es esto?"
     tb.send_message(cid,cadena)
-
-
 
 @tb.message_handler(commands=['informacion'])
 def informacion(m):
