@@ -3,11 +3,15 @@ python:
   - "3.5.2"
 
 services:
-  - sqlite3
+  - postgresql
 
 sudo: required
-install:
 
+test:
+  adapter: postgresql
+  database: travis_ci_test
+
+install:
   make install
   # - pip install pyTelegramBotAPI
   # - pip install -U pytest
