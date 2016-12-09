@@ -4,10 +4,10 @@ import psycopg2
 import sqlite3
 import based_dietas
 import sys
+import os
 
 
-tb = telebot.TeleBot(sys.argv[1]) # Combinamos la declaración del Token con la función de la API.
-
+tb = telebot.TeleBot(os.environ["TokenBot"]) # Combinamos la declaración del Token con la función de la API.
 
 def listener(messages):
     for m in messages:
@@ -18,8 +18,10 @@ def listener(messages):
 @tb.message_handler(commands=['bd'])
 def bd(m):
     try:
-        based_dietas.conecta()
+        based_dietas.conectaBD()
+        print("Ok")
     except:
+        print("No ok.")
         return "Fallo"
 
 @tb.message_handler(commands=['start'])
