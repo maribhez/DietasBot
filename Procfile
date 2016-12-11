@@ -1,1 +1,1 @@
-worked: python botDietas/bot_dietas.py
+worker: python botDietas/bot_dietas.py
