@@ -42,3 +42,17 @@ Para que Travis configure nuestro proyecto para poder realizar las pruebas se ha
 >
 >  ejecutar:
 >  	cd botDietas && python bot_dietas.py
+
+
+
+##Despliegue en un PASS.
+
+Para este hito he creado una cuenta en *Heroku*, y ese ha sido el primer paso para configurar el despliegue.
+
+Después, he creado una aplicación con su correspondiente base de datos (*de PostgreSQL*) con los comandos **heroku create** y **heroku addons:create heroku-postgresql:hobby-dev --app botdietas**, siendo *botdietas* el nombre de la aplicación anteriormente creada. Para poder crear esto sin fallos es necesario hacer login en nuestra cuenta con el comando **heroku login**.
+
+Una vez creada la aplicación y la BD es necesario sincronizarlo con GitHub y el repositorio donde estamos desarrollando la aplicación para poder usar esta configuración más tarde.
+
+Y además, tal y como aparece en la siguiente captura tenemos que hacer que el despliegue de la aplicación se realice de forma automática pero habiendo pasado antes por Travis.
+
+![Configuracion](http://i345.photobucket.com/albums/p391/maribhez/configuracionGitHub_zpsjxsrl2jq.png "Configuracion")
