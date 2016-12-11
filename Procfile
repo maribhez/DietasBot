@@ -1,1 +1,1 @@
-worked: cd botDietas && python bot_dietas.py
+worker: python botDietas/bot_dietas.py
