@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017.svg?branch=master)](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017)
 
+
 *****
 
 ## Descripción  y justificación.
@@ -16,7 +17,7 @@ Lo que permitirá ésto será tanto consultar dietas completas como poder record
 
 ## Servicios y herramientas.
 
-1. Uso de *SQLite* como base de datos.
+1. Uso de *PostgreSQL* como base de datos.
 2. Uso de *Travis-ci* para conseguir la integración continua y comprobar que el entorno funciona de forma correcta.
 3. Este bot está desarrollado sobre *Python 3.5.2*.
 4. Para el uso y prueba de este bot se usa la API de Telegram.
