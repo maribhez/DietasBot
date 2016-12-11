@@ -2,7 +2,7 @@
 
 <!-- ![Sin titulo](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017.svg?branch=master) -->
 
-[![Build Status](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017.svg?branch=master)](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017)
+[![Build Status](https://travis-ci.org/maribhez/DietasBot.svg?branch=master)](https://travis-ci.org/maribhez/DietasBot)
 
 
 *****
@@ -53,6 +53,35 @@ Después, he creado una aplicación con su correspondiente base de datos (*de Po
 
 Una vez creada la aplicación y la BD es necesario sincronizarlo con GitHub y el repositorio donde estamos desarrollando la aplicación para poder usar esta configuración más tarde.
 
-Y además, tal y como aparece en la siguiente captura tenemos que hacer que el despliegue de la aplicación se realice de forma automática pero habiendo pasado antes por Travis.
+Y además, tal y como aparece en la siguiente captura tenemos que hacer que el despliegue de la aplicación se realice de forma automática pero habiendo pasado antes por *Travis-CI*.
 
 ![Configuracion](http://i345.photobucket.com/albums/p391/maribhez/configuracionGitHub_zpsjxsrl2jq.png "Configuracion")
+
+
+Lo siguiente es establecer las *variables de entorno* tanto en Travis-CI como en Heroku. Tenemos que establecer como variables de entorno las credenciales de la base de datos creada en Heroku y el Token del bot de Telegram.
+
+
+Además, para que Heroku sepa qué tiene que ejecutar tenemos que crear un fichero denominado *Procfile* con el siguiente contenido:
+
+> worker: python botDietas/bot_dietas.py
+
+
+Y, por último, para dar a conocer la versión de Python sobre la que estamos trabajando creamos un fichero *runtime.txt* donde sólo será necesario añadir lo siguiente:
+
+> python-3.5.2
+
+
+Y ya, para finalizar, se pone en funcionamiento nuestra aplicación con el comando:
+
+> heroku ps:scale worker=1 --app botdietas
+
+
+Podemos ver que la aplicación está funcionando de forma adecuada accediendo a los *logs* proporcionados por Heroku desde terminal o desde la página web.
+
+
+Si accedemos desde la página web se nos presenta algo como esto:
+
+![Logs](http://i345.photobucket.com/albums/p391/maribhez/log_zps3swjszot.png "Logs en funcionamiento")
+
+
+Tras esto, ya sólo quedaría acceder a Telegram al bot "@DietasBot" para probar su funcionamiento.
