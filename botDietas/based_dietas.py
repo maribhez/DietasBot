@@ -3,10 +3,10 @@
 import os, sys
 import psycopg2, psycopg2.extras
 
-bd = os.environ["BD_NAME"]
-host_bd = os.environ["BD_HOST"]
-user_bd = os.environ["BD_USER"]
-password_bd = os.environ["BD_PASS"]
+bd = os.environ["Database"]
+host_bd = os.environ["Host"]
+user_bd = os.environ["User"]
+password_bd = os.environ["Password"]
 
 def conectaBD():
     #cadena = "host= 'localhost' dbname='BD_BOTDIETAS' user='mmar_bd' password = 'mmar_bd'"
