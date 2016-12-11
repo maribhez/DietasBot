@@ -2,7 +2,7 @@
 
 <!-- ![Sin titulo](https://travis-ci.org/maribhez/Infraestructura-Virtual-2016-2017.svg?branch=master) -->
 
-[![Build Status](https://travis-ci.org/maribhez/DietasBot.svg?branch=master)](https://travis-ci.org/maribhez/DietasBot)]
+[![Build Status](https://travis-ci.org/maribhez/DietasBot.svg?branch=master)](https://travis-ci.org/maribhez/DietasBot)
 [logo]: http://i345.photobucket.com/albums/p391/maribhez/photo_2016-12-11_21-13-22_zpscejb1fjf.jpg
 [enlace-heroku]:https://dashboard.heroku.com/apps/botdietas
 
