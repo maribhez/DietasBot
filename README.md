@@ -146,7 +146,7 @@ RUN cd DietasBot/ && make install
 
  * Ahora tenemos que comprobar que podemos acceder a dicho contenedor con la siguiente linea: 
 
-> docker run -e "DATABASE_URL=XXX" -e "HOST_BD=XXXX" -e "NAME_BD=XXXX" -e "PW_BD=XXXX" -e "TOKENBOT=XXXX" -e "USER_BD=XXXX" -i -t contenedoractividadesugrbot /bin/bash
+> docker run -e "DATABASE_URL=XXX" -e "HOST_BD=XXXX" -e "NAME_BD=XXXX" -e "PW_BD=XXXX" -e "TOKENBOT=XXXX" -e "USER_BD=XXXX" -i -t dietasbot /bin/bash
 
 Los parámetros a usar son aquellas credenciales correspodientes a la base de datos de Heroku que habíamos usado en anteriores configuraciones y la del bot que estamos desarrollando. Si todo ha funcionado de la forma esperada podremos pasar a la configuración de Docker sobre Docker Hub. 
 
