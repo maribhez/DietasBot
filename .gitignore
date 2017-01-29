@@ -8,6 +8,7 @@
 *.gz
 *.[oa]
 *.pyc
+*.retry
 *~
 *.#
 **/.DS_Store

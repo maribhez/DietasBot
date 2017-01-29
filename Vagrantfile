@@ -8,8 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 80, host: 80
 
   config.ssh.private_key_path = '~/.ssh/id_rsa'
-  config.ssh.username = 'mmaribanhez'
-  config.ssh.password = 'aabbcc'
+
 
   config.vm.provider :azure do |azure|
     # mgmt_certificate = File.expand_path('C:\Users\Mmar\botdietas\azurevagrant.cer')
