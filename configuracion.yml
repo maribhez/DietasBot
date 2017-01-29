@@ -17,6 +17,8 @@
     apt: name=python-dev state=present
   - name: Instalar libpq-dev (python)
     apt: name=libpq-dev state=present
+  - name: Descargar repositorio.
+    shell: git clone https://github.com/maribhez/DietasBot.git
   - name: Instalar build-essential (python)
     apt: name=build-essential state=present
   - name: Instalar python-psycopg2 (python)
@@ -31,8 +33,8 @@
     apt: name=supervisor state=present
   - name: Configuracion supervisor
     template: src=supervisor_bot.conf dest=/etc/supervisor/conf.d/supervisor_bot.conf
-  - name: Ejecutar supervisor
-    service: name=supervisor state=started
   - name: Instalar BD postgresql
     apt: name=postgresql state=present
     apt: name=postgresql-contrib state=present
+  - name: Ejecutar supervisor
+    service: name=supervisor state=started
