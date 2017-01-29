@@ -1,5 +1,5 @@
 from fabric.api import sudo, cd, env, run, shell_env
-from fabric.api*
+from fabric.api import *
 import os
 
 #Paso inicial para poner a punto nuestra maquina.
