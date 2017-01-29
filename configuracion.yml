@@ -1,0 +1,38 @@
+---
+- hosts: all
+  sudo: yes
+  remote_user: vagrant
+  vars:
+    TOKENBOT: "{{ lookup('env','TOKENBOT') }}"
+    USER_BD: "{{ lookup('env','USER_BD') }}"
+    PASS_BD: "{{ lookup('env', 'PASS_BD') }}"
+    HOST_BD: "{{ lookup('env', 'HOST_BD') }}"
+    NAME_BD: "{{ lookup('env', 'NAME_BD') }}"
+  tasks:
+  - name: Actualizando el sistema.
+    command: sudo apt-get update
+  - name: Instalar setuptools (de python).
+    apt: name=python-setuptools state=present
+  - name: Instalar python-dev.
+    apt: name=python-dev state=present
+  - name: Instalar libpq-dev (python)
+    apt: name=libpq-dev state=present
+  - name: Instalar build-essential (python)
+    apt: name=build-essential state=present
+  - name: Instalar python-psycopg2 (python)
+    apt: name=python-psycopg2 state=present
+  - name: Instalar git
+    apt: name=git state=present
+  - name: Instalar pip
+    apt: name=python-pip state=present
+  - name: Instalar API.
+    command: sudo pip install python-telegram-bot
+  - name: Instalar supervisor
+    apt: name=supervisor state=present
+  - name: Configuracion supervisor
+    template: src=supervisor_bot.conf dest=/etc/supervisor/conf.d/supervisor_bot.conf
+  - name: Ejecutar supervisor
+    service: name=supervisor state=started
+  - name: Instalar BD postgresql
+    apt: name=postgresql state=present
+    apt: name=postgresql-contrib state=present
