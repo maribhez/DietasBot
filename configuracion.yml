@@ -33,3 +33,6 @@
     command: sudo pip install python-telegram-bot
   - name: Ejecutar supervisor
     service: name=supervisor state=started
+  - name: Instalar BD postgresql
+    apt: name=postgresql state=present
+    apt: name=postgresql-contrib state=present
