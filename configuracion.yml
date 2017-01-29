@@ -21,16 +21,16 @@
     apt: name=build-essential state=present
   - name: Instalar python-psycopg2 (python)
     apt: name=python-psycopg2 state=present
-  - name: Instalar supervisor
-    apt: name=supervisor state=present
-  - name: Configuracion supervisor
-    template: src=supervisor.conf dest=/etc/supervisor/conf.d/supervisor.conf
   - name: Instalar git
     apt: name=git state=present
   - name: Instalar pip
     apt: name=python-pip state=present
   - name: Instalar API.
     command: sudo pip install python-telegram-bot
+  - name: Instalar supervisor
+    apt: name=supervisor state=present
+  - name: Configuracion supervisor
+    template: src=supervisor_bot.conf dest=/etc/supervisor/conf.d/supervisor_bot.conf
   - name: Ejecutar supervisor
     service: name=supervisor state=started
   - name: Instalar BD postgresql
