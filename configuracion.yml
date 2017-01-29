@@ -23,6 +23,8 @@
     apt: name=python-psycopg2 state=present
   - name: Instalar supervisor
     apt: name=supervisor state=present
+  - name: Configuracion supervisor
+    template: src=supervisor.conf dest=/etc/supervisor/conf.d/supervisor.conf
   - name: Instalar git
     apt: name=git state=present
   - name: Instalar pip
