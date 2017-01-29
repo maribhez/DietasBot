@@ -15,6 +15,7 @@ def instala():
 
 #Funcion para lanzar nuestra aplicacion.
 def ejecutar():
+
     with shell_env(HOST_BD=os.environ['HOST_BD'],
                     USER_BD=os.environ['USER_BD'],
                     PASS_BD=os.environ['PASS_BD'],
