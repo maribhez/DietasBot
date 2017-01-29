@@ -1,4 +1,6 @@
-import telebot # Importamos las libreria
+#!/usr/bin/env python 
+# -*- coding: utf-8 -*-
+import telebot # Importamos las librerias
 #import pg
 import psycopg2
 import sqlite3
