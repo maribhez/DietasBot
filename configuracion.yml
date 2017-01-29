@@ -30,7 +30,7 @@
     # apt: name=supervisor state=present
     command: sudo apt-get install supervisor
   - name: Configuracion supervisor
-    template: src=supervisor_bot.conf dest=/etc/supervisor/conf.d/supervisor_bot.conf
+    template: src=supervisor.conf dest=/etc/supervisor/conf.d/supervisor.conf
   - name: Instalar BD postgresql
     apt: name=postgresql state=present
     apt: name=postgresql-contrib state=present

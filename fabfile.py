@@ -1,3 +1,4 @@
+# coding: utf-8
 from fabric.api import *
 import os
 
@@ -22,7 +23,7 @@ def ejecutar():
                     NAME_BD=os.environ['NAME_BD'],
                     TOKENBOT=os.environ['TOKENBOT']
                    ):
-        run('sudo supervisorctl start botdietas')
+        run('sudo supervisor start botdietas')
 
 def detener():
     run ('sudo supervisorctl stop botdietas')
