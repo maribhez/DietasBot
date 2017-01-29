@@ -1,0 +1,23 @@
+---
+- hosts: all
+  sudo: yes
+  remote_user: vagrant
+  tasks:
+  - name: Actualizando el sistema.
+    command: sudo apt-get update
+  - name: Instalar setuptools (de python).
+    apt: name=python-setuptools state=present
+  - name: Instalar python-dev.
+    apt: name=python-dev state=present
+  - name: Instalar libpq-dev (python)
+    apt: name=libpq-dev state=present
+  - name: Instalar build-essential (python)
+    apt: name=build-essential state=present
+  - name: Instalar python-psycopg2 (python)
+    apt: name=python-psycopg2 state=present
+  - name: Instalar git
+    apt: name=git state=present
+  - name: Instalar pip
+    apt: name=python-pip state=present
+  - name: Instalar API.
+    command: sudo pip install python-telegram-bot
