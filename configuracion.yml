@@ -27,11 +27,13 @@
   - name: Instalar API.
     command: sudo pip install python-telegram-bot
   - name: Instalar supervisor
-    apt: name=supervisor state=present
+    # apt: name=supervisor state=present
+    command: sudo apt-get install supervisor
   - name: Configuracion supervisor
     template: src=supervisor_bot.conf dest=/etc/supervisor/conf.d/supervisor_bot.conf
   - name: Instalar BD postgresql
     apt: name=postgresql state=present
     apt: name=postgresql-contrib state=present
   - name: Ejecutar supervisor
-    service: name=supervisor state=started
+    # service: name=supervisor state=started
+    command: service supervisor restart

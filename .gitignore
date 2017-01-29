@@ -9,6 +9,7 @@
 *.[oa]
 *.pyc
 *.env
+*.vagrant
 *.retry
 *~
 *.#
