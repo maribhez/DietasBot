@@ -17,8 +17,6 @@
     apt: name=python-dev state=present
   - name: Instalar libpq-dev (python)
     apt: name=libpq-dev state=present
-  - name: Descargar repositorio.
-    shell: git clone https://github.com/maribhez/DietasBot.git
   - name: Instalar build-essential (python)
     apt: name=build-essential state=present
   - name: Instalar python-psycopg2 (python)

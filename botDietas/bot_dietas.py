@@ -1,4 +1,4 @@
-import telebot # Importamos las librería
+import telebot # Importamos las libreria
 #import pg
 import psycopg2
 import sqlite3

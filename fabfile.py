@@ -1,4 +1,3 @@
-from fabric.api import sudo, cd, env, run, shell_env
 from fabric.api import *
 import os
 
@@ -22,10 +21,10 @@ def ejecutar():
                     NAME_BD=os.environ['NAME_BD'],
                     TOKENBOT=os.environ['TOKENBOT']
                    ):
-        run('sudo supervisorctl start bot-dietas')
+        run('sudo supervisorctl start botdietas')
 
 def detener():
-    run ('sudo supervisorctl stop bot-dietas')
+    run ('sudo supervisorctl stop botdietas')
 
 def borrado():
     run ('sudo rm -rf DietasBot')
