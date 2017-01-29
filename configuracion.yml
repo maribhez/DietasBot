@@ -2,6 +2,12 @@
 - hosts: all
   sudo: yes
   remote_user: vagrant
+  vars:
+    TOKENBOT: "{{ lookup('env','TOKENBOT') }}"
+    USER_BD: "{{ lookup('env','USER_BD') }}"
+    PASS_BD: "{{ lookup('env', 'PASS_BD') }}"
+    HOST_BD: "{{ lookup('env', 'HOST_BD') }}"
+    NAME_BD: "{{ lookup('env', 'NAME_BD') }}"
   tasks:
   - name: Actualizando el sistema.
     command: sudo apt-get update
