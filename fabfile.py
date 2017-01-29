@@ -23,7 +23,7 @@ def ejecutar():
                     NAME_BD=os.environ['NAME_BD'],
                     TOKENBOT=os.environ['TOKENBOT']
                    ):
-        run('sudo supervisor start botdietas')
+        run('sudo supervisorctl start botdietas')
 
 def detener():
     run ('sudo supervisorctl stop botdietas')
