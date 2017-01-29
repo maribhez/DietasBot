@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "azure"
+  config.env.enable #enable the plugin
   config.vm.box_url = 'https://github.com/msopentech/vagrant-azure/raw/master/dummy.box'
   config.vm.hostname = "localhost"
   config.vm.network "public_network"
