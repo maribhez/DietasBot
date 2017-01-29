@@ -3,7 +3,7 @@ from fabric.api import *
 import os
 
 #Paso inicial para poner a punto nuestra maquina.
-def instala():
+def Instala():
 
     #Aseguramos la limpieza de la maquina.
     run ('sudo rm -rf DietasBot')
@@ -15,7 +15,7 @@ def instala():
     run('cd DietasBot && pip install -r requirements.txt')
 
 #Funcion para lanzar nuestra aplicacion.
-def ejecutar():
+def Ejecutar():
 
     with shell_env(HOST_BD=os.environ['HOST_BD'],
                     USER_BD=os.environ['USER_BD'],
@@ -25,13 +25,17 @@ def ejecutar():
                    ):
         run('sudo supervisorctl start botdietas')
 
-def detener():
+def Recargar():
+    run("sudo supervisorctl reload")
+
+
+def Detener():
     run ('sudo supervisorctl stop botdietas')
 
-def borrado():
+def Borrado():
     run ('sudo rm -rf DietasBot')
 
-def test():
+def Test():
     with shell_env(HOST_BD=os.environ['HOST_BD'],
                     USER_BD=os.environ['USER_BD'],
                     PASS_BD=os.environ['PASS_BD'],
