@@ -1,7 +1,3 @@
-despliegue:
-	vagrant up --provider=azure
-	vagrant provision
-
 install:
 	fab -H vagrant@52.233.166.73 Instala
 
@@ -16,3 +12,7 @@ borrar:
 
 test:
 	fab -H 	vagrant@52.233.166.73 Test
+
+despliegue:
+	vagrant up --provider=azure
+	vagrant provision
