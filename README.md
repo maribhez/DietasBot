@@ -402,3 +402,27 @@ fab -H user@IP-maquina método
 Es por eso que una ejecución en nuestra máquina de los test creados en hitos anteriores queda de la siguiente forma:
 
 ![Test fab](http://i345.photobucket.com/albums/p391/maribhez/fabrictest_zpsszcl6jnr.png "Test fab")
+
+
+Tras esto, y para automatizar todo el proceso he creado tanto un archivo *makefile* como un *script* para el despliegue.
+
+Las órdenes del Makefile creado son las siguientes:
+
+* **despliegue**: Acción de desplegar y aprovisionar nuestra máquina.
+* **install**: Similar a la accion anterior.
+* **ejecutar**: Acción de lanzar la ejecución del bot.
+* **recargar**: Acción de recargar el supervisor configurado.
+* **borrar**: Acción de borrar la carpeta creada al clonar este repositorio en la máquina de Azure.
+* **test**: Acción de realizar los tests para comprobar el correcto funcionamiento de nuestra máquina.
+
+
+Por último, el script sólo dispone del siguiente contenido:
+~~~
+#!/bin/bash
+
+#Instalamos todo lo necesario y lanzamos la aplicación.
+fab -H vagrant@52.233.166.73 Instalar
+fab -H vagrant@52.233.166.73 Ejecutar
+~~~
+
+El propósito de este script es sólo lanzar el bot, para hacer necesario tan sólo el uso de un comando.
