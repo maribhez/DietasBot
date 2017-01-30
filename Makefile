@@ -3,7 +3,7 @@ despliegue:
 	vagrant provision
 
 install:
-	fab -H vagrant@52.233.166.73 Instalar
+	fab -H vagrant@52.233.166.73 Instala
 
 ejecutar:
 	fab -H 	vagrant@52.233.166.73 Ejecutar
