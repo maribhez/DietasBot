@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import telebot # Importamos las librerias
 #import pg
@@ -9,7 +9,7 @@ import sys
 import os
 
 
-tb = telebot.TeleBot(os.environ["TokenBot"]) # Combinamos la declaración del Token con la función de la API.
+tb = telebot.TeleBot(os.environ["TOKENBOT"]) # Combinamos la declaración del Token con la función de la API.
 
 def listener(messages):
     for m in messages:
