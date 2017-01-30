@@ -390,3 +390,15 @@ redirect_stderr=true
 stdout_logfile=/var/log/supervisor/bot.log
 stderr_logfile=/var/log/supervisor/bot-error.log
 ~~~
+
+Queda definido de esta manera cómo haremos los test de nuestra aplicación, cómo desplegaremos nuestra aplicación y cómo lanzaremos la ejecución del bot.
+
+La ejecución de esta herramienta se basa en el siguiente comando:
+
+~~~
+fab -H user@IP-maquina método
+~~~
+
+Es por eso que una ejecución en nuestra máquina de los test creados en hitos anteriores queda de la siguiente forma:
+
+![Test fab](http://i345.photobucket.com/albums/p391/maribhez/fabrictest_zpsszcl6jnr.png "Test fab")
