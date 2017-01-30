@@ -24,10 +24,6 @@ Vagrant.configure("2") do |config|
     azure.tcp_endpoints = '80:80'
     azure.vm_password = 'aabbcc'
 
-    # azure.tenant_id = 'fd37399f-3dd8-44ad-8986-7f2feed37299'
-    # azure.client_id = '5da64c88-bfff-42cd-a6df-7dff8edf9139'
-    # azure.client_secret = 'pBTCj2bsdtLYNAyjGE9XdYCCsZ73F+997SU7BKiLrBU='
-    # azure.subscription_id = '4bea550a-07fd-46f5-8dff-88bf67bac2e8'
     azure.tenant_id = ENV['TENANT_ID']
     azure.client_id = ENV['CLIENT_ID']
     azure.client_secret = ENV['CLIENT_SECRET']

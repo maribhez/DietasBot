@@ -175,4 +175,82 @@ Hemos configurado en este caso todo lo necesario para el despliegue automático 
 
 De entre todas las posibilidades he usado *Vagrant*, *Azure*, *Ansible*, *Fabric* y *Supervisor*. Por supuesto, antes de empezar a explicar todo lo que he realizado explico brevemente qué es cada una de estas herramientas.
 
-* **Vagrant**: Herramienta diseñada para la creación y configuración de entornos de desarrollo virtualizados. Para poder usarlo hemos de tener instalado **VirtualBox**, pudiendo instalarlo usando el siguiente [enlace](https://www.virtualbox.org/ "enlace") 
+* **Vagrant**: Herramienta diseñada para la creación y configuración de entornos de desarrollo virtualizados. Para poder usarlo hemos de tener instalado **VirtualBox**, pudiendo instalarlo usando el siguiente [enlace](https://www.virtualbox.org/ "enlace") .
+
+* **Azure**: Herramienta que proporciona un entorno gestionado para la ejecución y el despliegue de aplicaciones y servicios en la nube.
+
+* **Ansible**:Herramienta que permite gestionar configuraciones, aprovisionamiento de recursos, despliegue automático de aplicaciones y muchas otras tareas de TI de una forma limpia y sencilla.
+
+* **Fabric**: Librería de Python que permite ordenar tareas tanto en la máquina local como en una máquina remota, de forma que podemos ejecutar el despliegue sin usar ssh.
+
+* **Supervisor**: Gestor de procesos para Linux.
+
+
+### Pasos para el despliegue.
+
+Como ya se ha especificado hemos de tener instalado **VirtualBox** y en caso de ser necesario podemos usar lo siguiente:
+
+~~~
+sudo apt update
+sudo apt install virtualbox
+~~~
+
+
+Ahora, instalamos tanto Vagrant como el plugin de azure para Vagrant y el CLI de Azure.
+
+~~~
+sudo apt install Vagrant
+vagrant plugin install vagrant-azure --plugin-version '2.0.0.pre1'
+sudo npm install -g azure-cli
+~~~
+
+Como siguiente paso nos encontramos con la configuración del archivo **Vagrantfile**, que es el archivo que va a definir nuestra máquina virtual a desplegar.
+
+Nos queda de la siguiente manera, pudiendo verlo en el siguiente [enlace](https://github.com/maribhez/DietasBot/blob/master/Vagrantfile "enlace") y a continuación:
+
+~~~
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "azure"
+  config.env.enable #enable the plugin
+  config.vm.box_url = 'https://github.com/msopentech/vagrant-azure/raw/master/dummy.box'
+  config.vm.hostname = "localhost"
+  config.vm.network "public_network"
+  config.vm.network "private_network", ip: "40.68.191.37", virtualbox__intnet: "vboxnet0"
+  config.vm.network "forwarded_port", guest: 80, host: 80
+
+  config.ssh.private_key_path = '~/.ssh/id_rsa'
+
+
+  config.vm.provider :azure do |azure|
+    # mgmt_certificate = File.expand_path('C:\Users\Mmar\botdietas\azurevagrant.cer')
+    # mgmt_endpoint = 'https://management.core.windows.net'
+
+    azure.vm_image_urn = 'canonical:UbuntuServer:16.04-LTS:16.04.201701130'
+    azure.vm_size = 'Basic_A0'
+    azure.location = 'westeurope'
+    azure.vm_name = 'BOT-DIETAS'
+    azure.tcp_endpoints = '80:80'
+    azure.vm_password = 'aabbcc'
+
+    azure.tenant_id = ENV['TENANT_ID']
+    azure.client_id = ENV['CLIENT_ID']
+    azure.client_secret = ENV['CLIENT_SECRET']
+    azure.subscription_id =ENV['SUBSCRIPTION_ID']
+   end
+
+
+   #Provisionamiento
+   config.vm.provision "ansible" do |ansible|
+       ansible.sudo = true
+       ansible.playbook = "configuracion.yml"
+       ansible.verbose = "-vvvv"
+       ansible.host_key_checking = false
+  end
+
+end
+~~~
+
+Hemos de saber también que las variables de entorno declaradas han sido especificadas en un fichero auxiliar llamado **.env** y que por cuestiones de seguridad no ha sido subido a este repositorio.
+
+Algunas de las variables especificadas han sido, por ejemplo, el nombre de nuestra máquina, imagen de sistema operativo o la configuración de red.
