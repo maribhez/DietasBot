@@ -254,3 +254,139 @@ end
 Hemos de saber también que las variables de entorno declaradas han sido especificadas en un fichero auxiliar llamado **.env** y que por cuestiones de seguridad no ha sido subido a este repositorio.
 
 Algunas de las variables especificadas han sido, por ejemplo, el nombre de nuestra máquina, imagen de sistema operativo o la configuración de red.
+
+Usando *vagrant up* podemos lanzar nuestra máquina, haciendo notar además que gracias al uso de *Ansible* podemos instalar los paquetes. En la última parte podemos ver que se hace referencia a un archivo llamado **configuracion.yml** y que con el contenido de éste último instalamos todos los paquetes necesarios para el uso de nuestra aplicación.
+
+El contenido es el [siguiente](https://github.com/maribhez/DietasBot/blob/master/configuracion.yml "siguiente").
+
+
+
+~~~
+- hosts: all
+  sudo: yes
+  remote_user: vagrant
+  vars:
+    TOKENBOT: "{{ lookup('env','TOKENBOT') }}"
+    USER_BD: "{{ lookup('env','USER_BD') }}"
+    PASS_BD: "{{ lookup('env', 'PASS_BD') }}"
+    HOST_BD: "{{ lookup('env', 'HOST_BD') }}"
+    NAME_BD: "{{ lookup('env', 'NAME_BD') }}"
+  tasks:
+  - name: Actualizando el sistema.
+    command: sudo apt-get update
+  - name: Instalar setuptools (de python).
+    apt: name=python-setuptools state=present
+  - name: Instalar python-dev.
+    apt: name=python-dev state=present
+  - name: Instalar libpq-dev (python)
+    apt: name=libpq-dev state=present
+  - name: Instalar build-essential (python)
+    apt: name=build-essential state=present
+  - name: Instalar python-psycopg2 (python)
+    apt: name=python-psycopg2 state=present
+  - name: Instalar git
+    apt: name=git state=present
+  - name: Instalar pip
+    apt: name=python-pip state=present
+  - name: Instalar API.
+    command: sudo pip install python-telegram-bot
+  - name: Instalar supervisor
+    apt: name=supervisor state=present
+  - name: Configuracion supervisor
+    template: src=supervisor.conf dest=/etc/supervisor/conf.d/supervisor.conf
+  - name: Ejecutar supervisor
+    service: name=supervisor state=started
+  - name: Instalar BD postgresql
+    apt: name=postgresql state=present
+    apt: name=postgresql-contrib state=present
+  ~~~
+
+
+La orden **vagrant up --provider=azure** se encarga tanto del despliegue de la máquina como del aprovisionamiento de la misma. Sin embargo, existe un comando específico que nos valdría para la acción de instalación de paquetes: **vagrant provision**.
+
+Vemos también que en el directorio de este repositorio existe otro archivo llamado *ansible.cfg*, y éste se debe a la solución de un error surgido con estas últimas configuraciones.
+
+Después de desplegar y aprovisionar la máquina debemos comunicar con ella y ser capaces de realizar tareas de forma remota.
+
+Por supuesto requiere de una [instalación](http://www.fabfile.org/installing.html "instalación") previa. Tal y como se puede ver en el tutorial el comando a ejecutar es el siguiente:
+
+~~~
+pip install fabric
+~~~
+
+Aunque también podemos usar:
+
+~~~
+sudo apt-get install fabric
+~~~
+
+En la configuración de esta herramienta intervienen dos de nuestros archivos: la [configuracion interna](https://github.com/maribhez/DietasBot/blob/master/supervisor.conf "configuracion interna") y el [archivo](https://github.com/maribhez/DietasBot/blob/master/fabfile.py "archivo") donde vamos a definir todas las funciones con las que nos comunicaremos con la máquina y ejecutaremos nuestra aplicación.
+
+El contenido de ambos es el siguiente:
+
+* **Archivo supervisor.conf**:
+~~~
+# coding: utf-8
+from fabric.api import *
+import os
+
+#Paso inicial para poner a punto nuestra maquina.
+def Instala():
+
+    #Aseguramos la limpieza de la maquina.
+    run ('sudo rm -rf DietasBot')
+
+    #Descargamos nuestra aplicacion desde GitHub.
+    run('git clone https://github.com/maribhez/DietasBot.git')
+
+    #Entramos a la carpeta recien creada e instalamos los requisitos.
+    run('cd DietasBot && pip install -r requirements.txt')
+
+#Funcion para lanzar nuestra aplicacion.
+def Ejecutar():
+
+    with shell_env(HOST_BD=os.environ['HOST_BD'],
+                    USER_BD=os.environ['USER_BD'],
+                    PASS_BD=os.environ['PASS_BD'],
+                    NAME_BD=os.environ['NAME_BD'],
+                    TOKENBOT=os.environ['TOKENBOT']
+                   ):
+        run('sudo supervisorctl start botdietas')
+
+def Recargar():
+    run("sudo supervisorctl reload")
+
+
+def Detener():
+    run ('sudo supervisorctl stop botdietas')
+
+def Borrado():
+    run ('sudo rm -rf DietasBot')
+
+def Test():
+    with shell_env(HOST_BD=os.environ['HOST_BD'],
+                    USER_BD=os.environ['USER_BD'],
+                    PASS_BD=os.environ['PASS_BD'],
+                    NAME_BD=os.environ['NAME_BD'],
+                    TOKENBOT=os.environ['TOKENBOT']
+                   ):
+        run('cd DietasBot/botDietas && python test_bot.py')
+~~~
+
+* **Configuración interna**.
+~~~
+[program: botdietas]
+autostart=false
+command=python bot_dietas.py
+user=vagrant
+directory=/home/vagrant/DietasBot/botDietas
+environment=
+  TOKENBOT="{{TOKENBOT}}",
+  USER_BD="{{USER_BD}}",
+  PASS_BD="{{PASS_BD}}",
+  HOST_BD="{{HOST_BD}}",
+  NAME_BD="{{NAME_BD}}",
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/bot.log
+stderr_logfile=/var/log/supervisor/bot-error.log
+~~~
