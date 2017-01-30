@@ -89,17 +89,17 @@ Si accedemos desde la página web se nos presenta algo como esto:
 
 Tras esto, ya sólo quedaría acceder a Telegram al bot "@DietasBot" para probar su funcionamiento.
 
-## Entorno de pruebas. 
+## Entorno de pruebas.
 
 [Repositorio Docker](https://hub.docker.com/r/mmaribanhez/botdietas/)
 
-Esta configuración y este hito lo he realizado sobre Ubuntu, por lo que la instalación ya estaba realizada por los ejercicios correspondientes a la misma asignatura. 
+Esta configuración y este hito lo he realizado sobre Ubuntu, por lo que la instalación ya estaba realizada por los ejercicios correspondientes a la misma asignatura.
 
-Las primeras pruebas llevadas a cabo fueron las pruebas en local, y sus pasos fueron los siguientes. 
+Las primeras pruebas llevadas a cabo fueron las pruebas en local, y sus pasos fueron los siguientes.
 
 * Creación de archivo Dockerfile.
 
-Principalmente, la información pasada al archivo ha sido el sistema operativo a usar, las variables de entorno y argumentos que se le pasaran a la ejecución del contenedor y aquello que es necesario instalar. 
+Principalmente, la información pasada al archivo ha sido el sistema operativo a usar, las variables de entorno y argumentos que se le pasaran a la ejecución del contenedor y aquello que es necesario instalar.
 ~~~
 FROM ubuntu:14.04
 
@@ -144,34 +144,35 @@ RUN cd DietasBot/ && make install
 * Una vez creado procedemos a la instalación del contenedor con el comando **sudo docker build -t dietasbot ./**, donde dietasbot es el nombre del contenedor. Hemos de tener en cuenta que este comando lo tenemos que usar en la carpeta donde se encuentre el archivo *Dockerfile* del que anteriormente hemos hablado.
 ![Contenedor inicial](http://i345.photobucket.com/albums/p391/maribhez/Captura_zpsihtzlpqr.png "Contenedor inicial")
 
- * Ahora tenemos que comprobar que podemos acceder a dicho contenedor con la siguiente linea: 
+ * Ahora tenemos que comprobar que podemos acceder a dicho contenedor con la siguiente linea:
 
 > docker run -e "DATABASE_URL=XXX" -e "HOST_BD=XXXX" -e "NAME_BD=XXXX" -e "PW_BD=XXXX" -e "TOKENBOT=XXXX" -e "USER_BD=XXXX" -i -t dietasbot /bin/bash
 
-Los parámetros a usar son aquellas credenciales correspodientes a la base de datos de Heroku que habíamos usado en anteriores configuraciones y la del bot que estamos desarrollando. Si todo ha funcionado de la forma esperada podremos pasar a la configuración de Docker sobre Docker Hub. 
+Los parámetros a usar son aquellas credenciales correspodientes a la base de datos de Heroku que habíamos usado en anteriores configuraciones y la del bot que estamos desarrollando. Si todo ha funcionado de la forma esperada podremos pasar a la configuración de Docker sobre Docker Hub.
 
 
-* El siguiente paso es sincronizar nuestra cuenta de *Git Hub* con la cuenta ya creada de *Docker Hub* y crear un repositorio. 
+* El siguiente paso es sincronizar nuestra cuenta de *Git Hub* con la cuenta ya creada de *Docker Hub* y crear un repositorio.
 
 ![Repositorio](http://i345.photobucket.com/albums/p391/maribhez/Captura2_zps8iaqjx8n.png "Repositorio")
 
-* Tras esto, uan vez que hemos hecho *push* del archivo *Dockerfile* a nuestro repositorio de Git Hub y éste se encuentra actualizado  el repositorio de *Docker Hub* empieza su "Construcción" y se comprueba su correcta funcionamiento. 
+* Tras esto, uan vez que hemos hecho *push* del archivo *Dockerfile* a nuestro repositorio de Git Hub y éste se encuentra actualizado  el repositorio de *Docker Hub* empieza su "Construcción" y se comprueba su correcta funcionamiento.
 
 ![Construcción](http://i345.photobucket.com/albums/p391/maribhez/Captura3_zpsacdyhdv3.png "Construccion")
 
-* Y ya, para descargar, no hay más que usar **docker pull mmaribanhez/botdietas**, siendo esta información que podemos sacar del propio repositorio. 
+* Y ya, para descargar, no hay más que usar **docker pull mmaribanhez/botdietas**, siendo esta información que podemos sacar del propio repositorio.
  ![Descarga](http://i345.photobucket.com/albums/p391/maribhez/Captura4_zps4x77hhre.png "Descarga")
 
-Vemos aquí cómo aparece nuestra descarga en los repositorios de nuestro sistema. 
+Vemos aquí cómo aparece nuestra descarga en los repositorios de nuestro sistema.
 
 ![Comprobación](http://i345.photobucket.com/albums/p391/maribhez/Captura5_zpsmxial3za.png "Comprobacion")
 
 
 
+##Diseño del soporte virtual para el despliegue de una aplicación.
 
 
+Hemos configurado en este caso todo lo necesario para el despliegue automático a las plataformas de producción.
 
+De entre todas las posibilidades he usado *Vagrant*, *Azure*, *Ansible*, *Fabric* y *Supervisor*. Por supuesto, antes de empezar a explicar todo lo que he realizado explico brevemente qué es cada una de estas herramientas.
 
-
-
-
+* **Vagrant**: Herramienta diseñada para la creación y configuración de entornos de desarrollo virtualizados. Para poder usarlo hemos de tener instalado **VirtualBox**, pudiendo instalarlo siguiendo el tutorial del siguiente enlace: [](https://www.virtualbox.org/)
