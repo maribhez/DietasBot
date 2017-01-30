@@ -175,4 +175,4 @@ Hemos configurado en este caso todo lo necesario para el despliegue automático 
 
 De entre todas las posibilidades he usado *Vagrant*, *Azure*, *Ansible*, *Fabric* y *Supervisor*. Por supuesto, antes de empezar a explicar todo lo que he realizado explico brevemente qué es cada una de estas herramientas.
 
-* **Vagrant**: Herramienta diseñada para la creación y configuración de entornos de desarrollo virtualizados. Para poder usarlo hemos de tener instalado **VirtualBox**, pudiendo instalarlo siguiendo el tutorial del siguiente enlace: [](https://www.virtualbox.org/)
+* **Vagrant**: Herramienta diseñada para la creación y configuración de entornos de desarrollo virtualizados. Para poder usarlo hemos de tener instalado **VirtualBox**, pudiendo instalarlo usando el siguiente [enlace](https://www.virtualbox.org/ "enlace") 
